@@ -8,8 +8,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      TENOR_API: ${{secrets.TENOR_API}}
     steps:
       - uses: actions/checkout@v3
       - run: corepack enable
@@ -18,7 +16,11 @@ jobs:
           node-version: "20"
       # Pick your own package manager and build script
       - run: npm install
-      - run: npm run build --preset=github_pages
+      - run: npm run build
+        env:
+          TENOR_API: ${{secrets.TENOR_API}}
+          NITRO_PRESET: github_pages
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:

@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 
 export default defineNuxtConfig({
-  ssr: true,
+  ssr: false,
   runtimeConfig: {
     public: {
       tenor_key: process.env.TENOR_API,
