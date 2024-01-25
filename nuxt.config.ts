@@ -83,6 +83,9 @@ export default defineNuxtConfig({
       isCustomElement: tag => ['dotlottie-player', 'lottie-player'].includes(tag),
     },
   },
+  alias: {
+    pinia: '/node_modules/@pinia/nuxt/node_modules/pinia/dist/pinia.mjs',
+  },
   typescript: {
     shim: false,
     strict: true,
