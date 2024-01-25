@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Tilt+Warp&display=swap');
+
+@font-face {
+    font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+    font-family: "Rockdale";
+    font-style: normal;
+    font-weight: 400;
+    src: url("/fonts/RockdaleFree.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+    font-display: block;
+}
+
+@font-face {
+    font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+    font-family: "ModernAesthetic";
+    font-style: normal;
+    font-weight: 400;
+    src: url("/fonts/ModernAesthetic.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+    font-display: block;
+}
+@font-face {
+    font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+    font-family: "Geshina";
+    font-style: normal;
+    font-weight: 400;
+    src: url("/fonts/Geshina.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+    font-display: block;
+}
+@font-face {
+    font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+    font-family: "Bonche Light";
+    font-style: normal;
+    font-weight: 400;
+    src: url("/fonts/Bonche-Light.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+    font-display: block;
+}
+@font-face {
+    font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+    font-family: "Simplify";
+    font-style: normal;
+    font-weight: 400;
+    src: url("/fonts/Simplify.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+    font-display: block;
+}
+
+.font-simplify {
+    font-family: 'Simplify', sans-serif;
+}
+.font-bonche {
+    font-family: 'Bonche Light', sans-serif;
+}
+.font-genshina {
+    font-family: 'Geshina', sans-serif;
+}
+.font-rockdale {
+    font-family: 'Rockdale', sans-serif;
+}
+
+.font-modern {
+    font-family: 'ModernAesthetic', sans-serif;
+}
+
+.font-tilt-war {
+    font-family: 'Tilt Warp', sans-serif;
+}
