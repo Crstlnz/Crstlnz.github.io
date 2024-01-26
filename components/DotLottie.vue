@@ -1,8 +1,4 @@
 <script lang="ts" setup>
-// import 'https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.js'
-import '@dotlottie/player-component'
-import { useEventListener } from '@vueuse/core'
-
 const props = withDefaults(defineProps<{
   src: string
   autoplay?: boolean
@@ -15,18 +11,42 @@ const props = withDefaults(defineProps<{
 }>(), {
   worker: true,
   speed: 1,
+  controls: false,
+  loop: true,
+})
+
+// import 'https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.js'
+
+// import '@dotlottie/player-component'
+
+useHead({
+  script: [
+    {
+      type: 'module',
+      src: 'https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs',
+    },
+  ],
 })
 
 const player = ref<any>()
-
+const ready = ref(false)
 useEventListener(player, 'ready', () => {
+  ready.value = true
   player.value?.setSpeed(props.speed)
-  if (props.autoplay) {
-    player.value?.play()
-  }
+  player.value?.setLooping(props.loop)
+  // // player.value?.setControls(props.controls)
+  // if (props.autoplay) {
+  //   player.value?.play()
+  // }
+})
+
+onBeforeUnmount(() => {
+  player.value?.stop()
 })
 </script>
 
 <template>
-  <dotlottie-player ref="player" :src="src" background="transparent" hover :speed="speed ?? 1" :style="{ width: width || '100%', height: height || '100%' }" :loop="loop" :controls="controls" :worker="worker" />
+  <div :class="{ 'opacity-0': !ready, 'opacity-100': ready }" class="transition-opacity duration-300">
+    <dotlottie-player ref="player" :autoplay="autoplay || undefined" :src="src" background="transparent" :style="{ width: width || '100%', height: height || '100%' }" :controls="controls || undefined" :worker="worker" />
+  </div>
 </template>

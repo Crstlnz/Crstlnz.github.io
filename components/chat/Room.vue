@@ -80,11 +80,13 @@ const infoOpen = ref(false)
 
 <template>
   <div id="chat-room" class="flex w-full h-[100dvh] relative">
-    <div v-if="pending" class="absolute bg-black/50 flex inset-0 items-center justify-center font-bold text-4xl ">
-      <div class="animate-pulse">
-        Connecting...
+    <Transition name="fade">
+      <div v-if="pending" class="absolute bg-black/50 flex inset-0 items-center justify-center font-bold text-4xl ">
+        <div class="animate-pulse">
+          Connecting...
+        </div>
       </div>
-    </div>
+    </Transition>
     <div class="md:hidden w-full h-full bg-black/50 fixed inset-0 z-10 transition-all duration-500" :class="{ 'pointer-events-none opacity-0 invisible': !openMenu, 'pointer-events-auto visible': openMenu }" @click="close" />
     <div class="border-r-2 border-white/5 max-md:w-[65vw] lg:w-[220px] xl:w-[280px] flex flex-col h-full max-md:fixed bg-navy-1 max-md:z-10 transition-all duration-300" :class="{ 'max-md:-translate-x-full': !openMenu }">
       <div class="flex gap-1.5 items-center pt-3 max-md:px-3 md:px-3 md:pb-3" :title="title">
@@ -92,7 +94,7 @@ const infoOpen = ref(false)
           <div class="rounded-full w-7 h-7 shrink-0">
             <Icon name="ph:chat-teardrop-dots-fill" class="w-full h-full" />
           </div>
-          <span class="max-md:flex max-md:pt-1 pt-0.5 text-2xl font-simplify">{{ title }}</span>
+          <span class="max-md:flex max-md:pt-1 pt-0.5 text-2xl font-bold font-modern">{{ title }}</span>
         </NuxtLink>
         <button type="button" class="w-5 h-5" @click="infoOpen = true">
           <Icon name="mdi:information-variant-circle-outline" class="w-full h-full opacity-50 hover:opacity-100" />
@@ -155,12 +157,12 @@ const infoOpen = ref(false)
           </div>
         </HeadlessDialog>
       </HeadlessTransitionRoot>
-      <div class="max-md:flex px-4 md:px-3 text-xs flex gap-1.5 items-center max-md:py-2">
+      <div class="max-md:flex px-4 md:px-3 text-sm flex gap-1.5 items-center max-md:py-2">
         <div
           :class="{
             'bg-green-500': connections.size >= 1,
             'bg-gray-500': connections.size === 0,
-          }" class="w-2 h-2  rounded-full"
+          }" class="w-3 h-3  rounded-full"
         />
         <span>
           Connected User ({{ connections.size }})
@@ -181,11 +183,11 @@ const infoOpen = ref(false)
     <!-- CONTENT -->
     <div class="flex flex-col flex-1 h-full">
       <!-- APPBAR -->
-      <div class="flex max-md:gap-3 px-3 md:px-4 py-3 border-b-2 border-white/5 max-md:text-2xl text-xl">
+      <div class="flex max-md:gap-3 px-3 md:px-4 py-3 border-b-2 border-white/5">
         <button type="button" class="sm:hidden w-8 h-8 rounded-md" @click="open">
           <Icon name="ph:list" class="w-full h-full p-1" />
         </button>
-        <span class="font-semibold flex-1">{{ roomName }}</span>
+        <span class="font-semibold flex-1 text-2xl">{{ roomName }}</span>
         <button
           v-if="isSupported && roomId"
           type="button"

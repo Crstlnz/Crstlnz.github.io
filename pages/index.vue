@@ -1,17 +1,15 @@
 <script setup lang="ts">
 import { breakpointsTailwind, useBreakpoints, useEventListener, useScroll } from '@vueuse/core'
-import ScrollTrigger from 'gsap/ScrollTrigger'
 
-const content = ref()
-definePageMeta({
-  pageTransition: {
-    name: 'page',
-    mode: 'out-in',
-    onEnter: () => {
-      ScrollTrigger.refresh()
-    },
-  },
-})
+// definePageMeta({
+//   // pageTransition: {
+//   //   name: 'page',
+//   //   mode: 'out-in',
+//   //   onEnter: () => {
+//   //
+//   //   },
+//   // },
+// })
 
 const wrapper = ref<HTMLElement>()
 const wrapperChild = ref<HTMLElement>()
@@ -127,7 +125,7 @@ const { isMobile } = useDevice()
     </Teleport>
     <SinglePageNav class="fixed top-0 !left-0" :currect-section="sectionId" @menu-click="menuClick" />
 
-    <main id="content" ref="content" class="bg-navy-2 w-full">
+    <main id="content" class="bg-navy-2 w-full">
       <Transition name="popup">
         <button v-if="isTop" type="button" class="z-aboveNav w-10 h-10 bg-navy-3 border-white/50 border-2 rounded-full fixed bottom-10 right-10 hover:bg-navy-5 transition-[background-color,transform] hover:scale-110 duration-200 ease-linear" @click="scrollTop">
           <Icon name="heroicons:arrow-long-up-16-solid" size="1.5rem" />

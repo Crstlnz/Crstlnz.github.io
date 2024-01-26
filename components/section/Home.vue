@@ -30,7 +30,7 @@ function copyLink() {
 }
 
 const home = ref<HTMLElement | null>()
-const { $gsap, $CustomEase } = useNuxtApp()
+const { $CustomEase } = useNuxtApp()
 onMounted(() => {
 })
 const openHover = ref(false)
@@ -50,8 +50,8 @@ function hoverClick() {
 
 let ctx: gsap.Context
 afterSplashScreen(() => {
-  ctx = $gsap.context(() => {
-    const tl = $gsap.timeline({ })
+  ctx = useGsap.context(() => {
+    const tl = useGsap.timeline({ })
     tl.fromTo('#home-headline1', {
       x: -150,
       opacity: 0,
@@ -92,7 +92,7 @@ afterSplashScreen(() => {
       duration: 0.5,
     })
 
-    $gsap.fromTo('#lottie-home', {
+    useGsap.fromTo('#lottie-home', {
       opacity: 0,
     }, {
       opacity: 1,
@@ -100,7 +100,7 @@ afterSplashScreen(() => {
       duration: 2.5,
     })
 
-    const tlIcon = $gsap.timeline({})
+    const tlIcon = useGsap.timeline({})
     tlIcon.fromTo('.home-btn', {
       x: -15,
       y: 30,
@@ -132,16 +132,16 @@ onBeforeUnmount(() => {
     <div class="flex max-[1600px]:flex-col justify-center items-center flex-1 min-[1600px]:gap-40 my-40">
       <div
         id="home-wrapper"
-        class="xl:aspect-[6/4.9] h-[550px] flex flex-col gap-4 md:gap-6 py-16 md:py-20 text-[2.5rem] sm:text-6xl md:text-7xl text-right 2xl:text-8xl"
+        class="xl:aspect-[6/4.9] md:h-[550px] flex flex-col gap-4 md:gap-6 py-20 md:py-20 text-[2.5rem] sm:text-6xl md:text-7xl text-right 2xl:text-8xl"
       >
-        <div id="home-headline1" class="font-tilt-war max-md:leading-8 opacity-0">
+        <div id="home-headline1" class="font-tilt-warp max-md:leading-8 opacity-0">
           Crstlnz
         </div>
-        <div id="home-headline2" class="font-tilt-war flex gap-1 justify-end">
+        <div id="home-headline2" class="font-tilt-warp flex gap-1 justify-end">
           <div class="head2 opacity-0">
             Web
           </div>
-          <div ref="hover" class="head2 opacity-0  px-2 font-tilt-war" @touchend="hoverClick">
+          <div ref="hover" class="head2 opacity-0  px-2 font-tilt-warp" @touchend="hoverClick">
             <div class="highlight head2-bg absolute inset-0 -z-10" :class="{ open: openHover || isHover }" />
             Developer
           </div>
@@ -177,9 +177,7 @@ onBeforeUnmount(() => {
           </button>
         </div>
       </div>
-      <div id="lottie-home" class="max-[1600px]:hidden aspect-[6/4.9] h-[550px] flex opacity-0">
-        <DotLottie src="https://lottie.host/d072112a-535d-4356-bfad-859d1c663ee8/nZrOpJcFnb.lottie" autoplay :speed="0.8" width="100%" />
-      </div>
+      <DotLottie id="lottie-home" src="https://lottie.host/5d73bb0e-4c81-4888-82d8-7b3cfe3261aa/Ac0VtmthKv.lottie" autoplay :speed="0.8" width="100%" class="max-[1600px]:hidden aspect-[6/4.9] h-[550px] flex opacity-0" />
     </div>
   </section>
 </template>

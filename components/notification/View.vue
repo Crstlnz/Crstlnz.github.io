@@ -6,7 +6,7 @@ const notifData = useNotifications()
 const { deleteNotif, showNotif } = notifData
 const { currentNotif: notifs } = storeToRefs(notifData)
 const containerNotif = ref<any>()
-function beforeLeave (el: Element) {
+function beforeLeave(el: Element) {
   if (containerNotif.value) {
     const s = el as HTMLElement
     const parentRect = containerNotif.value.$el.getBoundingClientRect()
@@ -34,7 +34,7 @@ function beforeLeave (el: Element) {
             v-if="notif.type === 'success'"
             color="bg-green-500"
             icon="ic:round-check"
-            :default-title="notif?.title ?? $t('notif.title.success')"
+            :default-title="notif?.title ?? 'Success'"
             :notif="notif"
             @close="deleteNotif(notif.id)"
           />
@@ -43,7 +43,7 @@ function beforeLeave (el: Element) {
             v-else-if="notif.type === 'danger'"
             color="bg-red-500"
             icon="mdi:close-thick"
-            :default-title="notif?.title ?? $t('notif.title.danger')"
+            :default-title="notif?.title ?? 'Danger'"
             :notif="notif"
             @close="deleteNotif(notif.id)"
           />
@@ -52,7 +52,7 @@ function beforeLeave (el: Element) {
             v-else-if="notif.type === 'warn'"
             color="bg-yellow-500"
             icon="mdi:exclamation-thick"
-            :default-title="notif?.title ?? $t('notif.title.warn')"
+            :default-title="notif?.title ?? 'Warning'"
             :notif="notif"
             @close="deleteNotif(notif.id)"
           />
@@ -61,7 +61,7 @@ function beforeLeave (el: Element) {
             v-else
             color="bg-blue-500"
             icon="bi:info-lg"
-            :default-title="notif?.title ?? $t('notif.title.info')"
+            :default-title="notif?.title ?? 'Info'"
             :notif="notif"
             @close="deleteNotif(notif.id)"
           />

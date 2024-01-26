@@ -8,12 +8,11 @@ export default defineNuxtConfig({
     },
   },
   modules: [
-    '@vueuse/motion/nuxt',
+    'nuxt-lazy-load',
     'nuxt-headlessui',
     '@vueuse/nuxt',
     'dayjs-nuxt',
     '@nuxtjs/tailwindcss',
-    '@nuxtjs/i18n',
     '@nuxtjs/color-mode',
     'nuxt-icon',
     '@pinia/nuxt',
@@ -22,11 +21,11 @@ export default defineNuxtConfig({
     '@nuxt/image',
   ],
   image: {
-    provider: 'cloudinary',
-    cloudinary: {
-      baseURL: 'https://res.cloudinary.com/doig4w6cm/image/fetch/',
+    provider: 'imagekit',
+    imagekit: {
+      baseURL: 'https://ik.imagekit.io/crstlnz',
     },
-    quality: 80,
+    quality: 100,
     placeholder: 10,
     format: ['webp'],
     screens: {
@@ -48,24 +47,11 @@ export default defineNuxtConfig({
   ],
   app: {
     rootId: 'app',
-    layoutTransition: { name: 'page', mode: 'out-in' },
-    pageTransition: {
-      name: 'page',
-      mode: 'out-in',
-      // onEnter: () => {
-      //   ScrollTrigger.refresh()
-      // }
-    },
-  },
-  i18n: {
-    strategy: 'no_prefix',
-    locales: [
-      { code: 'en', iso: 'en-US', file: 'en.yaml', dir: 'ltr', name: 'EN' },
-      { code: 'id', iso: 'id-ID', file: 'id.yaml', dir: 'ltr', name: 'ID' },
-    ],
-    langDir: 'locales',
-    lazy: true,
-    defaultLocale: 'en',
+    // layoutTransition: { name: 'page', mode: 'out-in' },
+    // pageTransition: {
+    //   name: 'page',
+    //   mode: 'out-in',
+    // },
   },
   colorMode: {
     preference: 'dark',
@@ -80,11 +66,8 @@ export default defineNuxtConfig({
   },
   vue: {
     compilerOptions: {
-      isCustomElement: tag => ['dotlottie-player', 'lottie-player'].includes(tag),
+      isCustomElement: tag => ['dotlottie-player'].includes(tag),
     },
-  },
-  alias: {
-    pinia: '/node_modules/@pinia/nuxt/node_modules/pinia/dist/pinia.mjs',
   },
   typescript: {
     shim: false,
@@ -96,6 +79,7 @@ export default defineNuxtConfig({
     },
   },
   devtools: {
+    enabled: true,
     timeline: {
       enabled: true,
     },
@@ -107,15 +91,6 @@ export default defineNuxtConfig({
     },
     extraPlugins: {
       scrollTrigger: true,
-
     },
   },
-  nitro: {
-    prerender: {
-      failOnError: false,
-    },
-  },
-  // build: {
-  //   transpile: ['gsap']
-  // }
 })

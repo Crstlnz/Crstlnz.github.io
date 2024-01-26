@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import { useAnimate, useElementHover, useEventListener, useRafFn, useScroll, useWindowFocus, useWindowSize } from '@vueuse/core'
-
 const props = withDefaults(defineProps<{
   data: {
     img: string
@@ -75,27 +73,6 @@ function getSize(): number {
     return props.sizes.all
   }
 }
-
-// function getGap(): number {
-//   if (props.minGap.xxl && xl2.value) {
-//     return props.minGap.xxl
-//   }
-//   else if (props.minGap.xl && xl.value) {
-//     return props.minGap.xl
-//   }
-//   else if (props.minGap.lg && lg.value) {
-//     return props.minGap.lg
-//   }
-//   else if (props.minGap.md && md.value) {
-//     return props.minGap.md
-//   }
-//   else if (props.minGap.sm && sm.value) {
-//     return props.minGap.sm
-//   }
-//   else {
-//     return props.minGap.all
-//   }
-// }
 
 const gap = computed(() => {
   if (props.minGap.xxl && xl2.value) {
@@ -181,7 +158,7 @@ onBeforeUnmount(() => {
           }"
           class="pointer-events-auto shrink-0 text-center text-7xl leading-[8rem] text-slate-600 rounded-md mt-[5px]"
         >
-          <img :src="$imagekitIcon(icon.img)" :alt="icon.title" class="w-full h-full object-contain">
+          <NuxtImg :src="icon.img" :alt="icon.title" class="w-full h-full object-contain" />
         </component>
       </div>
     </div>

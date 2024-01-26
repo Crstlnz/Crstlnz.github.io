@@ -50,10 +50,10 @@ const isMD = greaterOrEqual('md')
 <template>
   <div class="flex w-full py-0.5 gap-2 md:gap-3 px-3 items-center">
     <textarea ref="textarea" rows="1" class="hidden-scrollbar bg-white/5 py-2 px-3 rounded-xl my-2 flex-1 focus:outline-none text-base resize-none" @keydown="onKeyDown" />
-    <HeadlessPopover v-slot="{ open, close }" class="relative">
+    <HeadlessPopover v-slot="{ open, close }" class="relative flex items-center">
       <HeadlessPopoverButton
         :class="open ? 'text-white' : 'text-white/90'"
-        class="group inline-flex items-center rounded-md text-base font-medium hover:text-blue-400 focus:outline-none focus-within:text-blue-500"
+        class="group inline-flex items-center rounded-md text-base font-medium hover:text-blue-500 focus:outline-none focus-within:text-blue-500"
       >
         <Icon name="ph:gif-duotone" size="2.5rem" />
       </HeadlessPopoverButton>
@@ -83,7 +83,7 @@ const isMD = greaterOrEqual('md')
         </HeadlessPopoverPanel>
       </transition>
     </HeadlessPopover>
-    <button type="button" class="rounded-full shrink-0 my-2 flex justify-center items-center hover:text-blue-400 focus-within:text-blue-500" aria-label="Send" @click="sendMessage">
+    <button type="button" class="rounded-full shrink-0 my-2 flex justify-center items-center hover:text-blue-500 focus-within:text-blue-500" aria-label="Send" @click="sendMessage">
       <Icon name="iconamoon:send-fill" size="2rem" />
     </button>
   </div>

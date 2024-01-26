@@ -5,26 +5,74 @@ import { NuxtLink } from '#components'
 import myLang from '~~/assets/json/myLang.json'
 
 const main = ref()
-const { $gsap } = useNuxtApp()
-const { width } = useElementStyle(main)
+const { width } = useElementSize(main)
+
 let ctx: gsap.Context
 onMounted(() => {
-  ctx = $gsap.context(() => {
-    $gsap.timeline({
-      scrollTrigger: {
-        trigger: '.lang-container',
-        start: 'top bottom',
-        end: 'bottom bottom',
-        toggleActions: 'restart none none reset',
-      },
-    })
+  ctx = useGsap.context(() => {
+    useGsap
+      .timeline({
+        scrollTrigger: {
+          trigger: '.lang-container',
+          start: 'top bottom',
+          end: 'bottom bottom',
+          toggleActions: 'restart none none reset',
+        },
+      })
       // .from('.skill-box', { y: 100, stagger: 0.15, opacity: 0, duration: 0.45, delay: 0.25 })
-      .from('.lang-list-animate', { x: 50, stagger: 0.1, opacity: 0, duration: 1, delay: 0, ease: 'expo.out' })
+      .from('.lang-list-animate', {
+        x: 50,
+        stagger: 0.1,
+        opacity: 0,
+        duration: 1,
+        delay: 0,
+        ease: 'expo.out',
+      })
+
+    useGsap
+      .timeline({
+        scrollTrigger: {
+          trigger: '#about-card',
+          start: 'top 60%',
+          end: 'bottom bottom',
+          toggleActions: 'restart none none reset',
+        },
+      })
+      .fromTo(
+        '#about-img',
+        {
+          rotate: 0,
+          scale: 1,
+          ease: 'bouncy',
+          translateX: 0,
+          translateY: 0,
+          duration: 0.7,
+          boxShadow: '0px 0px 0px 0px rgba(0,0,0,0)',
+        },
+        {
+          rotate: -12,
+          ease: 'bouncy',
+          boxShadow: '10px 50px 65px -15px rgba(0,0,0,0.7)',
+          scale: 1.05,
+          translateX: -21,
+          translateY: -40,
+        },
+      )
   }, main.value) // <- Scope!
 })
 
+const route = useRoute()
+const name = computed(() => {
+  if (route.query.n) {
+    return 'Kelvin Geraldi'
+  }
+  else {
+    return 'Crstlnz'
+  }
+})
+
 onBeforeUnmount(() => {
-  if (ctx)ctx.kill()
+  if (ctx) ctx.kill()
 })
 </script>
 
@@ -33,46 +81,119 @@ onBeforeUnmount(() => {
     id="about"
     ref="main"
     data-section="about"
-    class="bg-gray-900 flex flex-col w-full px-6 md:px-8 relative"
+    class="bg-gray-900 flex flex-col w-full px-4 md:px-6 xl:px-8 relative"
   >
-    <ScrollButton to="#about" icon="mingcute:arrows-down-fill" icon-class="text-white" class="bg-secondary" />
-    <div class="pt-24">
-      <div class="max-w-[87rem] mx-auto flex max-xl:flex-col gap-20 flex-1 mt-10">
-        <div class="flex-1 bg-navy-1 rounded-[2rem] p-10 group cursor-pointer flex flex-col gap-8 ring-2 ring-transparent hover:-translate-y-2 ease-[--transition-bounce] hover:ring-white/50 transition-all duration-500">
-          <div class="flex gap-8">
-            <div class="bg-black/20 w-40 aspect-square relative">
-              <img
-                src="https://avatars.githubusercontent.com/u/52141479"
-                alt="Github Profile Picture"
-                class="bg-white/50 w-40 aspect-square absolute -translate-x-5 -translate-y-10 rotate-[-12deg] ease-[--transition-bounce] scale-105 shadow-[10px_50px_65px_-15px_rgba(0,0,0,0.7)] transition-all duration-500 group-hover:shadow-none group-hover:rotate-0 group-hover:scale-100 group-hover:translate-x-0 group-hover:translate-y-0 object-cover"
+    <ScrollButton
+      to="#about"
+      icon="mingcute:arrows-down-fill"
+      icon-class="text-white"
+      class="bg-secondary"
+    />
+    <div class="pt-16 md:pt-24">
+      <div
+        class="max-w-[87rem] mx-auto flex max-xl:flex-col gap-10 md:gap-14 xl:gap-20 flex-1 mt-10"
+      >
+        <div
+          id="about-card"
+          class="glowing-card relative z-10 group max-w-full w-full xl:w-[700px] 2xl:w-[850px]"
+        >
+          <div class="absolute inset-0 glowing -z-10 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+          <div class="flex-1 bg-navy-1 rounded-[1.5rem] md:rounded-[2rem] p-5 md:p-10 group cursor-pointer flex flex-col gap-4 ring-2 ring-transparent group-hover:-translate-y-2 ease-[--transition-bounce] transition-all duration-700">
+            <div class="flex flex-col max-sm:gap-4 sm:flex-row items-center sm:justify-evenly">
+              <div
+                class="bg-black/20 max-sm:mt-4 w-28 xl:w-32 2xl:w-36 aspect-square relative shrink-0 rounded-xl"
               >
+                <img
+                  id="about-img"
+                  src="https://avatars.githubusercontent.com/u/52141479"
+                  alt="Github Profile Picture"
+                  class="bg-white/50 w-full aspect-square absolute -translate-x-5 rounded-xl -translate-y-10 rotate-[-12deg] ease-[--transition-bounce] scale-105 shadow-[10px_50px_65px_-15px_rgba(0,0,0,0.7)] transition-all duration-700 group-hover:!shadow-none group-hover:!rotate-0 group-hover:!scale-100 group-hover:translate-x-0 group-hover:!translate-y-0 object-cover"
+                >
+              </div>
+              <div class="flex justify-center">
+                <div class="text-xl md:text-3xl [&>b]:text-secondary-2">
+                  Hello, I'm <b>{{ name }}</b><br>
+                  I'm a <b>full-stack web developer</b>
+                </div>
+              </div>
             </div>
-            <div class="flex-1">
-              <!-- <div class="text-2xl [&>b]:text-red-500">
-                Hello, I'm <b>Kelvin Geraldi</b><br>
-                I'm a <b>full-stack web developer</b>
-              </div> -->
+            <div class="flex flex-col gap-3">
+              <NuxtLink
+                to="https://github.com/crstlnz"
+                title="GitHub Stats"
+                class="flex flex-col max-md:-mx-5 md:flex-row items-start md:items-center justify-center hover md:hover:bg-black/20 rounded-xl transition-colors duration-300"
+              >
+                <div class="md:h-36 lg:h-44 aspect-[49.45/18] max-w-full">
+                  <img
+                    class="w-full"
+                    src="https://statsme.vercel.app/api?username=crstlnz&hide=issues&count_private=true&show_icons=true&icon_color=ffb886&title_color=ffb886&hide_border=true&text_color=fcfeff&theme=transparent"
+                  >
+                </div>
+                <div class="max-md:w-full md:h-36 lg:h-44 aspect-[49.45/18] md:aspect-[9.09/5] max-w-full flex">
+                  <div class="aspect-[9.09/5] max-h-full h-full">
+                    <img
+                      class="w-full"
+                      src="https://statsme.vercel.app/api/top-langs/?username=crstlnz&layout=compact&theme=transparent&langs_count=6&exclude_repo=komik_scraper,daiakuma-drive&show_icons=true&icon_color=ffb886&title_color=ffb886&hide_border=true&text_color=fcfeff"
+                    >
+                  </div>
+                </div>
+              </NuxtLink>
+              <NuxtLink to="https://wakatime.com/@crstlnz" class="md:w-full max-md:-mx-5 md:bg-black/20 rounded-xl">
+                <div class="h-[12.5rem] aspect-[494/193.05] max-w-full">
+                  <img
+                    class="w-full"
+                    src="https://statsme.vercel.app/api/wakatime?username=crstlnz&hide_border=true&theme=transparent&icon_color=ffb886&title_color=ffb886&text_color=fcfeff&range=last_7_day"
+                  >
+                </div>
+              </NuxtLink>
             </div>
           </div>
         </div>
-        <div class="flex-1">
-          <div class="group tech-stacks relative">
+        <div class="flex-1 flex flex-col">
+          <div class="group tech-stacks relative flex-1 flex flex-col">
             <div
-              class="skill-title container top-0 z-20 mx-auto flex items-end gap-3 pb-10 text-2xl font-bold md:text-4xl cursor-pointer"
+              class="skill-title container top-0 z-20 mx-auto flex items-end gap-3 pb-8 md:pb-10 text-2xl font-bold md:text-4xl cursor-pointer"
             >
               <div class="relative w-[3rem] h-[3rem] card">
                 <div class="card-inner">
-                  <img :src="$imagekitIcon('https://ik.imagekit.io/crstlnz/img/icons_javascript.png?updatedAt=1706206130202')" alt="" class="absolute inset-0 card-front">
-                  <img :src="$imagekitIcon('https://ik.imagekit.io/crstlnz/img/icons_typescript.png?updatedAt=1706206130201')" alt="" class="absolute inset-0 card-back">
+                  <img
+                    :src="
+                      $imagekitIcon(
+                        'https://ik.imagekit.io/crstlnz/img/icons_javascript.png?updatedAt=1706206130202',
+                      )
+                    "
+                    alt=""
+                    class="absolute inset-0 card-front"
+                  >
+                  <img
+                    :src="
+                      $imagekitIcon(
+                        'https://ik.imagekit.io/crstlnz/img/icons_typescript.png?updatedAt=1706206130201',
+                      )
+                    "
+                    alt=""
+                    class="absolute inset-0 card-back"
+                  >
                 </div>
               </div>
-              <span class="text-slate-300 group-hover:text-slate-100 transition-colors duration-700">My Tech Stacks</span>
+              <span
+                class="text-slate-300 group-hover:text-slate-100 transition-colors duration-700"
+              >My Tech Stacks</span>
             </div>
-            <div class="relative text-slate-300 group-hover:text-slate-100 cursor-pointer container mx-auto flex-1 text-xl p-5 md:p-6 rounded-2xl bg-navy-1 ring-1 group-hover:ring-2 group-hover:ring-white/50 ring-white/10 group-hover:-translate-y-1 transition-[transform,box-shadow,color] ease-out duration-700">
-              With 4 years of experience for web development, I have very good skills for full-stack projects using JavaScript or TypeScript with Vue and Nuxt framework. I often use Vue, but I also explored React JS to gain flexibility in adapting to various project needs. I'm also actively expanding my skillset, having explored mobile development with Flutter and Jetpack Compose for Android.
+            <div
+              class="relative flex-1 text-slate-300 group-hover:text-slate-100 cursor-pointer container mx-auto text-lg p-4 indent-8 text-justify leading-8 md:p-6 rounded-2xl bg-navy-1 ring-1 group-hover:ring-2 group-hover:ring-white/50 ring-white/10 group-hover:-translate-y-1 transition-[transform,box-shadow,color] ease-[--transition-bounce] duration-700"
+            >
+              With 4 years of experience for web development, I have very good
+              skills for full-stack projects using JavaScript or TypeScript with
+              Vue and Nuxt framework. I often use Vue, but I also explored React
+              JS to gain flexibility in adapting to various project needs. I'm
+              also actively expanding my skillset, having explored mobile
+              development with Flutter and Jetpack Compose for Android.
             </div>
           </div>
-          <div class="lang-container container mx-auto mt-10 flex flex-wrap gap-3">
+          <div
+            class="lang-container container mx-auto mt-8 flex flex-wrap gap-3"
+          >
             <component
               :is="lang.img ? NuxtLink : 'div'"
               v-for="lang in myLang"
@@ -88,7 +209,7 @@ onBeforeUnmount(() => {
       </div>
       <RunningIcon
         class="py-12 md:py-16 w-full"
-        :speed="width * 0.03 / 100"
+        :speed="(width * 0.03) / 100"
         :enable-hover="true"
         :min-gap="{
           all: 30,
@@ -114,7 +235,7 @@ onBeforeUnmount(() => {
 .tech-stacks {
   &:hover {
     .card-inner {
-        transform: rotateY(180deg);
+      transform: rotateY(180deg);
     }
   }
   .card {
@@ -136,6 +257,78 @@ onBeforeUnmount(() => {
         transform: rotateY(180deg);
       }
     }
+  }
+}
+
+// .glowing-card {
+//   position: relative;
+//   z-index: 1000 !important;
+//   &::before {
+//     position: absolute;
+//     content: '';
+//     opacity: 0;
+//     top: 10px;
+//     left: 0;
+//     right: 0;
+//     z-index: -1000;
+//     height: 100%;
+//     width: 100%;
+//     transform: scale(0.9) translateZ(0);
+//     transition: 0.3s;
+//     filter: blur(55px);
+//     background: linear-gradient(
+//       to left,
+//       #ff5770,
+//       #e4428d,
+//       #c42da8,
+//       #9e16c3,
+//       #6501de,
+//       #9e16c3,
+//       #c42da8,
+//       #e4428d,
+//       #ff5770
+//     );
+//     background-size: 200% 200%;
+//     animation: animateGlow 2s linear infinite;
+//   }
+//   &:hover {
+//     &::before {
+//       opacity: 1;
+//     }
+//   }
+// }
+
+.glowing {
+  top: -5px;
+  left: 0;
+  right: 0;
+  z-index: -1000;
+  height: 100%;
+  width: 100%;
+  transform: scale(1) translateZ(0);
+  filter: blur(25px);
+  background: linear-gradient(
+    to left,
+    #ff5770,
+    #e4428d,
+    #c42da8,
+    #9e16c3,
+    #6501de,
+    #9e16c3,
+    #c42da8,
+    #e4428d,
+    #ff5770
+  );
+  background-size: 200% 200%;
+  animation: animateGlow 3.5s linear infinite;
+}
+
+@keyframes animateGlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
   }
 }
 </style>

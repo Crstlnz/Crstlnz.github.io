@@ -1,72 +1,72 @@
 [
   {
     "title": "Javascript",
-    "img": "https://ik.imagekit.io/crstlnz/img/icons_javascript.png",
+    "img": "/img/icons_javascript.png",
     "resource": "https://www.ecma-international.org/publications-and-standards/standards/ecma-262/"
   },
   {
     "title": "Typescript",
-    "img": "https://ik.imagekit.io/crstlnz/img/icons_typescript.png",
+    "img": "/img/icons_typescript.png",
     "resource": "https://www.typescriptlang.org/"
   },
   {
     "title": "Vue",
-    "img": "https://ik.imagekit.io/crstlnz/img/icons_vue.png",
+    "img": "/img/icons_vue.png",
     "resource": "https://vuejs.org/"
   },
   {
     "title": "React",
-    "img": "https://ik.imagekit.io/crstlnz/img/icons_react.png",
+    "img": "/img/icons_react.png",
     "resource": "https://react.dev/"
   },
   {
     "title": "Nuxt",
-    "img": "https://ik.imagekit.io/crstlnz/img/icons_nuxt.png",
+    "img": "/img/icons_nuxt.png",
     "resource": "https://nuxt.com/"
   },
   {
     "title": "MongoDB",
-    "img": "https://ik.imagekit.io/crstlnz/img/icons_mongodb.png",
+    "img": "/img/icons_mongodb.png",
     "resource": "https://www.mongodb.com/"
   },
   {
     "title": "Flutter",
-    "img": "https://ik.imagekit.io/crstlnz/img/icons_flutter.png",
+    "img": "/img/icons_flutter.png",
     "resource": "https://flutter.dev/"
   },
   {
     "title": "NodeJS",
-    "img": "https://ik.imagekit.io/crstlnz/img/icons_node_js.png",
+    "img": "/img/icons_node_js.png",
     "resource": "https://nodejs.org"
   },
   {
     "title": "HTML5",
-    "img": "https://ik.imagekit.io/crstlnz/img/icons_html5.png",
+    "img": "/img/icons_html5.png",
     "resource": "https://html.spec.whatwg.org/multipage/"
   },
   {
     "title": "CSS3",
-    "img": "https://ik.imagekit.io/crstlnz/img/icons_css3.png",
+    "img": "/img/icons_css3.png",
     "resource": "https://www.w3.org/Style/CSS"
   },
   {
     "title": "Jetpack Compose",
-    "img": "https://ik.imagekit.io/crstlnz/img/icons_jetpack_compose.png",
+    "img": "/img/icons_jetpack_compose.png",
     "resource": "https://developer.android.com/jetpack/compose?gclid=CjwKCAjwpuajBhBpEiwA_ZtfhR8N3h0cMGGP0vMQbc7JkWI6CQzYxTJjaUUYWRG5cXj2SO_E55WrKxoCGSMQAvD_BwE&gclsrc=aw.ds"
   },
   {
     "title": "ESLint",
-    "img": "https://ik.imagekit.io/crstlnz/img/icons_eslint.png",
+    "img": "/img/icons_eslint.png",
     "resource": "https://eslint.org/"
   },
   {
     "title": "Sass",
-    "img": "https://ik.imagekit.io/crstlnz/img/icons_sass.png",
+    "img": "/img/icons_sass.png",
     "resource": "https://sass-lang.com/"
   },
   {
     "title": "Hono",
-    "img": "https://ik.imagekit.io/crstlnz/img/icons_hono.png",
+    "img": "/img/icons_hono.png",
     "resource": "https://hono.dev/"
   }
 ]

@@ -128,14 +128,14 @@ function pickGif(data: any) {
         <NuxtLink to="https://tenor.com/" target="_blank" class="!text-white">Tenor</NuxtLink></span>
     </div>
     <input v-model="search" class="mx-4 bg-white/5 focus-within:ring-1 ring-white/20 py-1 px-3 rounded-md focus:outline-none">
-    <div ref="gifScroller" class="px-4 aspect-[6/7] md:aspect-video my-2 overflow-y-auto chat-scrollbar">
-      <div v-if="pending && !data.length" key="loading" class="flex items-center justify-center h-full flex-wrap gap-3 animate-pulse font-semibold text-xl">
+    <div ref="gifScroller" class="px-4 aspect-[6/7] md:aspect-video overflow-y-auto chat-scrollbar">
+      <div v-if="pending && !data.length" key="loading" class="flex py-2 items-center justify-center h-full flex-wrap gap-3 animate-pulse font-semibold text-xl">
         Loading...
       </div>
-      <div v-else-if="error" key="error" class="flex items-center justify-center h-full flex-wrap gap-3 animate-pulse font-semibold text-xl">
+      <div v-else-if="error" key="error" class="flex py-2 items-center justify-center h-full flex-wrap gap-3 animate-pulse font-semibold text-xl">
         An error occured!
       </div>
-      <div v-else key="data" class="flex items-center h-full flex-wrap gap-3">
+      <div v-else key="data" class="flex py-2 h-full flex-wrap gap-3">
         <button
           v-for="img in (data || [])"
           :key="img?.id || String(Math.random() * 1000)"
@@ -143,7 +143,9 @@ function pickGif(data: any) {
         >
           <div class="rounded-md absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
           <img
-            class="rounded-md h-22" :src="img?.media_formats?.nanogif?.url" :alt="img?.id" :style="{
+            class="rounded-md h-24 bg-white/5"
+            :src="img?.media_formats?.nanogif?.url" :alt="img?.id"
+            :style="{
               aspectRatio: `${img?.media_formats?.nanogif?.dims?.[0]}/${img?.media_formats?.nanogif?.dims?.[1]}`,
             }"
           >

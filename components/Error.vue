@@ -1,7 +1,4 @@
 <script lang="ts" setup>
-import '@lottiefiles/lottie-player'
-import anime from 'animejs/lib/anime.es.js'
-
 const props = defineProps({
   error: {
     type: Object,
@@ -10,10 +7,16 @@ const props = defineProps({
     },
   },
 })
-const { t } = useI18n()
-const id = `error.${props.error?.statusCode}`
-const msg = t(id)
-const message = msg !== id ? msg : 'An error occured!'
+
+const message = computed(() => {
+  if (props.error?.statusCode === 404) {
+    return 'Page not found!'
+  }
+  else {
+    return 'An error occured!'
+  }
+})
+// const message = msg !== id ? msg : 'An error occured!'
 const messageNode = ref<HTMLElement | null>(null)
 interface ErrorMessage {
   message: string
@@ -30,7 +33,7 @@ function getError(error: any): ErrorMessage {
         message: 'Page not found!',
         code: 404,
         class: '',
-        lotie: '/json/404.json',
+        lotie: 'https://lottie.host/7d064435-bc57-4419-a258-90649de931d9/8fQzNsuP9l.lottie',
         langKey: 'error.404',
       }
     default:
@@ -38,7 +41,7 @@ function getError(error: any): ErrorMessage {
         message: 'An error occured!',
         code: 520,
         class: '',
-        lotie: '/json/error.json',
+        lotie: 'https://lottie.host/7ef28f98-9288-484f-ad71-4eedff5260cc/vAZ0wRnLY2.lottie',
         langKey: 'error.520',
       }
   }
@@ -53,33 +56,34 @@ onMounted(() => {
       return `<div>${i.split('').map(t => `<span class='letter inline-block'>${t}</span>`).join('')}</div>`
     }).join('<span class=\'letter\'> </span>')
   }
-  anime({
-    duration: 1000,
-    targets: '.letter',
-    loop: true,
-    translateY: [0, -10, 5, 0],
-    easing: 'easeOutSine',
-    endDelay: 1000,
-    delay: anime.stagger(70),
+  // const { $CustomEase } = useNuxtApp()
+  // $CustomEase.create('bounce', '.175,.885,.32,1.275')
+
+  useGsap.to('.letter', {
+    stagger: {
+      each: 0.03,
+      repeat: -1,
+      yoyo: true,
+    },
+    translateY: -20,
+    ease: `elastic`,
+    duration: 2,
+    repeat: 1,
+    yoyo: true,
   })
 })
 </script>
 
 <template>
-  <div class="mx-10 flex h-[100vh] items-center justify-center">
-    <div class="mb-32 space-y-12">
-      <ClientOnly>
-        <template #placeholder>
-          <div class="m-auto aspect-[45/35] max-w-[85%]" />
-        </template>
-        <lottie-player
-          class="m-auto aspect-[45/35] max-w-[85%]"
-          autoplay
-          loop
-          :src="errorData.lotie"
-        />
-      </ClientOnly>
-      <div ref="messageNode" :class="error.statusCode === 404 ? 'text-[rgb(58,87,232)]' : 'text-[#0d70c5]'" class="flex flex-wrap justify-center gap-2 pb-10 text-center text-4xl font-semibold xl:text-5xl [&>div]:inline-block">
+  <div class="mx-10 flex min-h-[100vh] py-10 items-center justify-center">
+    <div class="mb-20 space-y-10">
+      <DotLottie
+        class="m-auto aspect-square max-w-[85%] w-[600px]"
+        autoplay
+        loop
+        :src="errorData.lotie"
+      />
+      <div ref="messageNode" :class="error.statusCode === 404 ? 'text-[#b0e7fd]' : 'text-slate-200'" class="flex flex-wrap justify-center gap-2 pb-10 text-center text-4xl font-semibold xl:text-5xl [&>div]:inline-block">
         {{ message }}
       </div>
       <div class="text-center">
