@@ -107,7 +107,7 @@ onBeforeUnmount(() => {
                   id="about-img"
                   src="https://avatars.githubusercontent.com/u/52141479"
                   alt="Github Profile Picture"
-                  class="bg-white/50 w-full aspect-square absolute -translate-x-5 rounded-xl -translate-y-10 rotate-[-12deg] ease-[--transition-bounce] scale-105 shadow-[10px_50px_65px_-15px_rgba(0,0,0,0.7)] transition-all duration-700 group-hover:!shadow-none group-hover:!rotate-0 group-hover:!scale-100 group-hover:translate-x-0 group-hover:!translate-y-0 object-cover"
+                  class="bg-white/50 w-full aspect-square absolute -translate-x-5 rounded-xl -translate-y-10 rotate-[-12deg] ease-[--transition-bounce] scale-105 shadow-[10px_50px_65px_-15px_rgba(0,0,0,0.7)] transition-all duration-700  object-cover"
                 >
               </div>
               <div class="flex justify-center">
@@ -123,13 +123,13 @@ onBeforeUnmount(() => {
                 title="GitHub Stats"
                 class="flex flex-col max-md:-mx-5 md:flex-row items-start md:items-center justify-center hover md:hover:bg-black/20 rounded-xl transition-colors duration-300"
               >
-                <div class="md:h-36 lg:h-44 aspect-[49.45/18] max-w-full">
+                <div class="md:h-36 lg:h-[10.5rem] aspect-[49.45/18] max-w-full">
                   <img
                     class="w-full"
                     src="https://statsme.vercel.app/api?username=crstlnz&hide=issues&count_private=true&show_icons=true&icon_color=ffb886&title_color=ffb886&hide_border=true&text_color=fcfeff&theme=transparent"
                   >
                 </div>
-                <div class="max-md:w-full md:h-36 lg:h-44 aspect-[49.45/18] md:aspect-[9.09/5] max-w-full flex">
+                <div class="max-md:w-full md:h-36 lg:h-[10.5rem] aspect-[49.45/18] md:aspect-[9.09/5] max-w-full flex">
                   <div class="aspect-[9.09/5] max-h-full h-full">
                     <img
                       class="w-full"
@@ -139,10 +139,10 @@ onBeforeUnmount(() => {
                 </div>
               </NuxtLink>
               <NuxtLink to="https://wakatime.com/@crstlnz" class="md:w-full max-md:-mx-5 md:bg-black/20 rounded-xl">
-                <div class="h-[12.5rem] aspect-[494/193.05] max-w-full">
+                <div class="md:h-[10.7rem] md:aspect-[511/175.05] max-w-full">
                   <img
                     class="w-full"
-                    src="https://statsme.vercel.app/api/wakatime?username=crstlnz&hide_border=true&theme=transparent&icon_color=ffb886&title_color=ffb886&text_color=fcfeff&range=last_7_day"
+                    src="https://statsme.vercel.app/api/wakatime?username=crstlnz&hide_border=true&theme=transparent&icon_color=ffb886&title_color=ffb886&text_color=fcfeff&range=last_7_day&langs_count=4"
                   >
                 </div>
               </NuxtLink>
@@ -181,7 +181,7 @@ onBeforeUnmount(() => {
               >My Tech Stacks</span>
             </div>
             <div
-              class="relative flex-1 text-slate-300 group-hover:text-slate-100 cursor-pointer container mx-auto text-lg p-4 indent-8 text-justify leading-8 md:p-6 rounded-2xl bg-navy-1 ring-1 group-hover:ring-2 group-hover:ring-white/50 ring-white/10 group-hover:-translate-y-1 transition-[transform,box-shadow,color] ease-[--transition-bounce] duration-700"
+              class="relative flex-1 text-slate-300 group-hover:text-slate-100 cursor-pointer container mx-auto text-lg p-4 indent-8 text-justify leading-8 md:p-8 rounded-2xl bg-navy-1 ring-1 group-hover:ring-2 group-hover:ring-white/50 ring-white/10 group-hover:-translate-y-1 transition-[transform,box-shadow,color] ease-[--transition-bounce] duration-700"
             >
               With 4 years of experience for web development, I have very good
               skills for full-stack projects using JavaScript or TypeScript with
@@ -299,14 +299,15 @@ onBeforeUnmount(() => {
 // }
 
 .glowing {
-  top: -5px;
+  top: -7px;
   left: 0;
   right: 0;
   z-index: -1000;
   height: 100%;
   width: 100%;
+  border-radius: 0.25rem;
   transform: scale(1) translateZ(0);
-  filter: blur(25px);
+  filter: blur(15px);
   background: linear-gradient(
     to left,
     #ff5770,

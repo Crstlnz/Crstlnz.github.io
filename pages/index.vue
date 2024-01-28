@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { breakpointsTailwind, useBreakpoints, useEventListener, useScroll } from '@vueuse/core'
+import type Lenis from '@studio-freight/lenis'
 
 // definePageMeta({
 //   // pageTransition: {
@@ -99,12 +100,12 @@ function scrollTop() {
 }
 
 function menuClick(menu: Menu) {
-  if (menu.url === '#') {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+  if (menu.url !== '#') {
+    const el = document.getElementById(menu.id)
+    smoothScroll(el || 0)
   }
   else {
-    const el = document.getElementById(menu.url.replaceAll('#', ''))
-    el?.scrollIntoView({ behavior: 'smooth' })
+    smoothScroll(0)
   }
 }
 

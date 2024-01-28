@@ -49,9 +49,10 @@ function hoverClick() {
 }
 
 let ctx: gsap.Context
-afterSplashScreen(() => {
+let tl: gsap.core.Timeline, tlIcon: gsap.core.Timeline
+onMounted(() => {
   ctx = useGsap.context(() => {
-    const tl = useGsap.timeline({ })
+    tl = useGsap.timeline({ paused: true })
     tl.fromTo('#home-headline1', {
       x: -150,
       opacity: 0,
@@ -62,13 +63,12 @@ afterSplashScreen(() => {
       duration: 0.2,
     })
 
-    const head2 = Array.from(document.querySelectorAll('.head2')).reverse()
-    tl.fromTo(head2, {
+    tl.fromTo('.head2', {
       x: -150,
       opacity: 0,
     }, {
       x: 0,
-      stagger: 0.2,
+      stagger: -0.3,
       opacity: 1,
       ease: 'circ.out',
       duration: 0.2,
@@ -92,15 +92,15 @@ afterSplashScreen(() => {
       duration: 0.5,
     })
 
-    useGsap.fromTo('#lottie-home', {
-      opacity: 0,
-    }, {
-      opacity: 1,
-      ease: 'expo.out',
-      duration: 2.5,
-    })
+    // useGsap.fromTo('#lottie-home', {
+    //   opacity: 0,
+    // }, {
+    //   opacity: 1,
+    //   ease: 'expo.out',
+    //   duration: 2.5,
+    // })
 
-    const tlIcon = useGsap.timeline({})
+    tlIcon = useGsap.timeline({ paused: true })
     tlIcon.fromTo('.home-btn', {
       x: -15,
       y: 30,
@@ -116,6 +116,10 @@ afterSplashScreen(() => {
       stagger: 0.3,
     })
   })
+})
+afterSplashScreen(() => {
+  if (tl) tl.resume()
+  if (tlIcon) tlIcon.resume()
 })
 
 onBeforeUnmount(() => {
@@ -177,7 +181,7 @@ onBeforeUnmount(() => {
           </button>
         </div>
       </div>
-      <DotLottie id="lottie-home" src="https://lottie.host/5d73bb0e-4c81-4888-82d8-7b3cfe3261aa/Ac0VtmthKv.lottie" autoplay :speed="0.8" width="100%" class="max-[1600px]:hidden aspect-[6/4.9] h-[550px] flex opacity-0" />
+      <DotLottie id="lottie-home" src="https://lottie.host/5d73bb0e-4c81-4888-82d8-7b3cfe3261aa/Ac0VtmthKv.lottie" autoplay :speed="0.8" width="100%" class="max-[1600px]:hidden aspect-[6/4.9] h-[550px] flex" />
     </div>
   </section>
 </template>

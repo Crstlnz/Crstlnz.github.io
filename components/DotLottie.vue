@@ -46,7 +46,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div :class="{ 'opacity-0': !ready, 'opacity-100': ready }" class="transition-opacity duration-300">
+  <div :class="{ 'opacity-100': ready }" class="opacity-0 transition-opacity duration-300">
     <dotlottie-player ref="player" :autoplay="autoplay || undefined" :src="src" background="transparent" :style="{ width: width || '100%', height: height || '100%' }" :controls="controls || undefined" :worker="worker" />
   </div>
 </template>

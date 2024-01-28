@@ -40,7 +40,7 @@ export default defineNuxtConfig({
   },
   css: [
     '~/assets/css/tailwind.css',
-    '~/assets/css/locomotive.css',
+    '~/assets/css/lenis-scroll.css',
     '~/assets/css/style.scss',
     '~/assets/css/transition.scss',
     '~/assets/css/fonts.scss',

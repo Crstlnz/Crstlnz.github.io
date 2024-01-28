@@ -81,6 +81,8 @@ function openSplashScreen() {
 useTimeoutFn(() => {
   openSplashScreen()
 }, 750)
+
+useLenis()
 </script>
 
 <template>
@@ -100,8 +102,8 @@ useTimeoutFn(() => {
       <NuxtPage
         :key="key"
         :transition="{
-          name: 'fade',
-          mode: 'out-in',
+          name: 'page',
+          mode: 'in-out',
         }"
       />
     </NuxtLayout>
