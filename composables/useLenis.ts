@@ -17,8 +17,8 @@ export default function () {
   }
 
   function destroyLenis() {
-    if (lenis) {
-      lenis.value?.destroy()
+    if (lenis.value) {
+      lenis.value.destroy()
       useGsap.ticker.remove(raf)
     }
   }
@@ -26,6 +26,11 @@ export default function () {
   onMounted(() => {
     createLenis()
   })
+
+  // useNuxtApp().hook('page:finish', () => {
+  //   destroyLenis()
+  //   createLenis()
+  // })
 
   onBeforeUnmount(() => {
     destroyLenis()

@@ -30,7 +30,6 @@ function copyLink() {
 }
 
 const home = ref<HTMLElement | null>()
-const { $CustomEase } = useNuxtApp()
 onMounted(() => {
 })
 const openHover = ref(false)

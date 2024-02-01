@@ -1,4 +1,8 @@
 <script lang="ts" setup>
+import '@splidejs/vue-splide/css'
+import { Splide, SplideSlide } from '@splidejs/vue-splide'
+import { AutoScroll } from '@splidejs/splide-extension-auto-scroll'
+
 const props = withDefaults(defineProps<{
   data: {
     img: string
@@ -41,6 +45,13 @@ const props = withDefaults(defineProps<{
   },
   offset: 200,
 })
+
+// defineComponent({
+//   components: {
+//     Splide,
+//     SplideSlide,
+//   },
+// })
 
 const { greaterOrEqual } = useResponsive()
 const sm = greaterOrEqual('sm')
@@ -97,54 +108,51 @@ const gap = computed(() => {
 
 const { $gsap } = useNuxtApp()
 let ctx: gsap.Context
-let animation: gsap.core.Tween
-onMounted(() => {
-  ctx = $gsap.context(() => {
-    animation = $gsap.fromTo('#icon-slider', {
-      xPercent: 0,
-    }, {
-      duration: 60,
-      xPercent: -50,
-      repeat: -1,
-      ease: 'none',
-    })
-  })
-})
-
-// function pause() {
-//   if (animation) animation.pause()
-// }
-
-// function resume() {
-//   if (animation) animation.resume()
-// }
-
-// const isFocus = useWindowFocus()
-
-// watch(isFocus, (focus) => {
-//   if (focus) {
-//     resume()
-//   }
-//   else {
-//     pause()
-//   }
+// onMounted(() => {
+//   ctx = $gsap.context(() => {
+//     $gsap.fromTo('#icon-slider', {
+//       xPercent: 0,
+//     }, {
+//       duration: 60,
+//       xPercent: -50,
+//       repeat: -1,
+//       ease: 'none',
+//     })
+//   })
 // })
 
 onBeforeUnmount(() => {
   if (ctx) ctx.kill()
 })
-// useAnimate(container, keyframes, { duration: 60000, iterations: Number.POSITIVE_INFINITY })
 </script>
 
 <template>
   <div>
-    <div ref="scroller" class="gradient relative overflow-x-hidden transition-opacity duration-300 max-w-[100vw] mx-auto" :style="{ height: `${getSize() + 10}px` }">
+    <Splide
+      class="gradient my-4"
+      :options="{
+        type: 'loop',
+        arrows: false,
+        pagination: false,
+        perPage: 12,
+        gap: '3rem',
+        autoScroll: {
+          speed: 0.3,
+          pauseOnHover: false,
+        },
+      }" :extensions="{ AutoScroll }" aria-label="My Favorite Images"
+    >
+      <SplideSlide v-for="icon in [...data]" :key="icon.img">
+        <NuxtImg :src="icon.img" :alt="icon.title" class="w-full h-full object-contain" />
+      </SplideSlide>
+    </Splide>
+    <!-- <div ref="scroller" class="gradient relative overflow-x-hidden transition-opacity duration-300 max-w-[100vw] mx-auto" :style="{ height: `${getSize() + 10}px` }">
       <div id="icon-slider" ref="container" class="absolute flex justify-around" :style="{ gap: `${gap}px`, paddingRight: `${gap / 2}px`, paddingLeft: `${gap / 2}px` }">
         <component
           :is="icon.resource && enableLink ? 'a' : 'div'"
-          v-for="icon in [...data, ...data]"
+          v-for="[idx, icon] in [...data, ...data].entries()"
           ref="icons"
-          :key="icon.img"
+          :key="idx"
           target="_blank"
           :href="enableLink ? icon.resource : undefined"
           :title="icon.title"
@@ -161,7 +169,7 @@ onBeforeUnmount(() => {
           <NuxtImg :src="icon.img" :alt="icon.title" class="w-full h-full object-contain" />
         </component>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -181,7 +189,7 @@ onBeforeUnmount(() => {
   to {transform: translateX(50%);}
 }
 
-// #icon-slider{
-//   animation: slide-left 60s infinite linear;
-// }
+#icon-slider{
+  animation: slide-left 60s infinite linear;
+}
 </style>

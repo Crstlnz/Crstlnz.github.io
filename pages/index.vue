@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { breakpointsTailwind, useBreakpoints, useEventListener, useScroll } from '@vueuse/core'
-import type Lenis from '@studio-freight/lenis'
 
 // definePageMeta({
 //   // pageTransition: {

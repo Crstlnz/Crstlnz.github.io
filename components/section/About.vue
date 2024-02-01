@@ -10,54 +10,47 @@ const { width } = useElementSize(main)
 let ctx: gsap.Context
 onMounted(() => {
   ctx = useGsap.context(() => {
-    useGsap
-      .timeline({
-        scrollTrigger: {
-          trigger: '.lang-container',
-          start: 'top bottom',
-          end: 'bottom bottom',
-          toggleActions: 'restart none none reset',
-        },
-      })
-      // .from('.skill-box', { y: 100, stagger: 0.15, opacity: 0, duration: 0.45, delay: 0.25 })
-      .from('.lang-list-animate', {
-        x: 50,
-        stagger: 0.1,
-        opacity: 0,
-        duration: 1,
-        delay: 0,
-        ease: 'expo.out',
-      })
+    // useGsap
+    //   .timeline({
+    //     scrollTrigger: {
+    //       trigger: '.lang-container',
+    //       start: 'top bottom',
+    //       end: 'bottom bottom',
+    //       toggleActions: 'restart none none reset',
+    //     },
+    //   })
+    //   // .from('.skill-box', { y: 100, stagger: 0.15, opacity: 0, duration: 0.45, delay: 0.25 })
+    //   .from('.lang-list-animate', {
+    //     x: 50,
+    //     stagger: 0.1,
+    //     opacity: 0,
+    //     duration: 1,
+    //     delay: 0,
+    //     ease: 'expo.out',
+    //   })
 
-    useGsap
-      .timeline({
-        scrollTrigger: {
-          trigger: '#about-card',
-          start: 'top 60%',
-          end: 'bottom bottom',
-          toggleActions: 'restart none none reset',
-        },
-      })
-      .fromTo(
-        '#about-img',
-        {
-          rotate: 0,
-          scale: 1,
-          ease: 'bouncy',
-          translateX: 0,
-          translateY: 0,
-          duration: 0.7,
-          boxShadow: '0px 0px 0px 0px rgba(0,0,0,0)',
-        },
-        {
-          rotate: -12,
-          ease: 'bouncy',
-          boxShadow: '10px 50px 65px -15px rgba(0,0,0,0.7)',
-          scale: 1.05,
-          translateX: -21,
-          translateY: -40,
-        },
-      )
+    // useGsap
+    //   .fromTo(
+    //     '#about-img',
+    //     {
+    //       rotate: 0,
+    //       scale: 1,
+    //       ease: 'bouncy',
+    //       translateX: 0,
+    //       translateY: 0,
+    //       duration: 0.7,
+    //       paused: true,
+    //       boxShadow: '0px 0px 0px 0px rgba(0,0,0,0)',
+    //     },
+    //     {
+    //       rotate: -12,
+    //       ease: 'bouncy',
+    //       boxShadow: '10px 50px 65px -15px rgba(0,0,0,0.7)',
+    //       scale: 1.05,
+    //       translateX: -21,
+    //       translateY: -40,
+    //     },
+    //   )
   }, main.value) // <- Scope!
 })
 

@@ -10,7 +10,7 @@ const multiViewerUrl = ref('https://dc.crstlnz.my.id/multi?mockup=1')
     id="projects"
     data-section="projects"
     data-color="bg-white"
-    class="projects md:px-4 xl:px-10 bg-language flex snap-start flex-col items-center py-14 text-white md:py-20 relative"
+    class="projects md:px-4 xl:px-10 flex snap-start flex-col items-center py-14 text-white md:py-20 relative"
   >
     <ScrollButton to="#projects" icon="mingcute:arrows-down-fill" icon-class="text-white" class="bg-secondary" />
     <div class="flex items-end gap-3 text-5xl md:text-7xl xl:text-8xl pt-4 my-14 md:my-16 2xl:text-9xl font-bold">
@@ -25,14 +25,14 @@ const multiViewerUrl = ref('https://dc.crstlnz.my.id/multi?mockup=1')
           <NuxtImg
             src="/img/mockup/Doodle%20-%20Floppy%20Disk.png"
             alt="Floppy Doodle"
-            class="max-[1800px]:hidden absolute top-1/2 -translate-y-1/2 group-hover:top-[45%] group-focus-visible:top-[45%] z-10 h-36 -left-12 rotate-12 transition-[top,opacity,visibility] invisible opacity-0 group-hover:opacity-100 group-hover:visible group-focus-visible:visible group-focus-visible:opacity-100 duration-[500ms]"
+            class="max-[1800px]:hidden absolute top-[40%] group-hover:-translate-y-4 group-focus-visible:-translate-y-4 z-10 h-36 -left-12 rotate-12 transition-[transform,opacity] opacity-0 group-hover:opacity-100 group-hover:visible group-focus-visible:opacity-100 duration-[500ms]"
           />
           <NuxtImg
             src="/img/mockup/Doodle%20-%20Magnifier.png"
             alt="Magnifier Doodle"
-            class="max-[1800px]:hidden absolute -top-6 group-hover:-top-12 group-focus-visible:-top-12 z-10 h-40 left-[380px] rotate-[-18deg] transition-[top,opacity,visibility] invisible opacity-0 group-hover:opacity-100 group-hover:visible group-focus-visible:visible group-focus-visible:opacity-100 duration-[500ms]"
+            class="max-[1800px]:hidden absolute -top-6 group-hover:-translate-y-4 group-focus-visible:-translate-y-4 z-10 h-40 left-[380px] rotate-[-18deg] transition-[transform,opacity] opacity-0 group-hover:opacity-100 group-hover:visible group-focus-visible:opacity-100 duration-[500ms]"
           />
-          <div class="bg-navy-3 py-10 px-12 md:px-16 md:py-12 max-h-[450px] sm:max-h-[600px] xl:max-h-[550px] 2xl:max-h-[680px] shadow-md ring-1 ring-slate-700 group-hover:ring-2 group-hover:ring-slate-600 transition-all duration-500 ease-[--transition-bounce] rounded-[3.5rem] xl:rounded-[4rem] relative overflow-hidden">
+          <div class="bg-navy-2 ring-4 ring-white/20 py-10 px-12 md:px-16 md:py-12 max-h-[450px] sm:max-h-[600px] xl:max-h-[550px] 2xl:max-h-[680px] shadow-md ring-slate-700 transition-all duration-500 ease-[--transition-bounce] rounded-[3.5rem] xl:rounded-[4rem] relative overflow-hidden">
             <div class="flex flex-col gap-3 items-end">
               <div class="font-semibold text-lg xl:text-xl opacity-70">
                 Website
@@ -52,9 +52,9 @@ const multiViewerUrl = ref('https://dc.crstlnz.my.id/multi?mockup=1')
           <NuxtImg
             src="/img/mockup/Doodle%20-%20Gamepad.png"
             alt="Gamepad Doodle"
-            class="max-[1800px]:hidden absolute -top-8 group-hover:-top-14 group-focus-visible:-top-14 rotate-12 z-10 h-36 left-16 2xl:left-28 transition-[top,opacity,visibility] invisible opacity-0 group-hover:opacity-100 group-hover:visible group-focus-visible:visible group-focus-visible:opacity-100 duration-[500ms]"
+            class="max-[1800px]:hidden absolute -top-8 group-hover:-translate-y-4 group-focus-visible:-translate-y-4 rotate-12 z-10 h-36 left-16 2xl:left-28 transition-[transform,opacity] opacity-0 group-hover:opacity-100 group-hover:visible group-focus-visible:opacity-100 duration-[500ms]"
           />
-          <div class="bg-navy-3 py-10 px-12 md:px-16 md:py-12 max-h-[450px] sm:max-h-[600px] xl:max-h-[550px] 2xl:max-h-[680px] shadow-md ring-1 ring-slate-700 group-hover:ring-2 group-hover:ring-slate-600 transition-all duration-500 ease-[--transition-bounce] rounded-[3.5rem] xl:rounded-[4rem] relative overflow-hidden">
+          <div class="bg-navy-2 ring-4 ring-white/20 py-10 px-12 md:px-16 md:py-12 max-h-[450px] sm:max-h-[600px] xl:max-h-[550px] 2xl:max-h-[680px] shadow-md ring-slate-700 transition-all duration-500 ease-[--transition-bounce] rounded-[3.5rem] xl:rounded-[4rem] relative overflow-hidden">
             <div class="flex flex-col gap-3 items-end">
               <div class="font-semibold text-lg xl:text-xl opacity-70">
                 Game
@@ -76,9 +76,9 @@ const multiViewerUrl = ref('https://dc.crstlnz.my.id/multi?mockup=1')
           <NuxtImg
             src="/img/mockup/Doodle%20-%20Gamepad.png"
             alt="Gamepad Doodle"
-            class="max-[1800px]:hidden absolute -top-8 group-hover:-top-14 group-focus-visible:-top-14 rotate-12 z-10 h-36 left-28 transition-[top,opacity,visibility] invisible opacity-0 group-hover:opacity-100 group-hover:visible group-focus-visible:visible group-focus-visible:opacity-100 duration-[500ms]"
+            class="max-[1800px]:hidden absolute -top-8 group-hover:-translate-y-4 group-focus-visible:-translate-y-4 rotate-12 z-10 h-36 left-28 transition-[transform,opacity] opacity-0 group-hover:opacity-100 group-hover:visible group-focus-visible:opacity-100 duration-[500ms]"
           />
-          <div class="bg-navy-3 py-10 px-12 md:px-16 md:py-12 max-h-[450px] sm:max-h-[600px] xl:max-h-[550px] 2xl:max-h-[680px] shadow-md ring-1 ring-slate-700 group-hover:ring-2 group-hover:ring-slate-600 transition-all duration-500 ease-[--transition-bounce] rounded-[3.5rem] xl:rounded-[4rem] relative overflow-hidden">
+          <div class="bg-navy-2 ring-4 ring-white/20 py-10 px-12 md:px-16 md:py-12 max-h-[450px] sm:max-h-[600px] xl:max-h-[550px] 2xl:max-h-[680px] shadow-md ring-slate-700 transition-all duration-500 ease-[--transition-bounce] rounded-[3.5rem] xl:rounded-[4rem] relative overflow-hidden">
             <div class="flex flex-col gap-3 items-end">
               <div class="font-semibold text-lg xl:text-xl opacity-70">
                 Website
@@ -98,14 +98,14 @@ const multiViewerUrl = ref('https://dc.crstlnz.my.id/multi?mockup=1')
           <NuxtImg
             src="/img/mockup/Doodle%20-%20Action.png"
             alt="Clapperboard Doodle"
-            class="max-[1800px]:hidden absolute top-1/2 -translate-y-1/2 group-hover:top-[45%] group-focus-visible:top-[45%] z-10 h-44 -left-20 rotate-[-5deg] transition-[top,opacity,visibility] invisible opacity-0 group-hover:opacity-100 group-hover:visible group-focus-visible:visible group-focus-visible:opacity-100 duration-[500ms]"
+            class="max-[1800px]:hidden absolute top-[40%] group-hover:-translate-y-4 group-focus-visible:-translate-y-4 z-10 h-44 -left-20 rotate-[-5deg] transition-[transform,opacity] opacity-0 group-hover:opacity-100 group-hover:visible group-focus-visible:opacity-100 duration-[500ms]"
           />
           <NuxtImg
             src="/img/mockup/Doodle%20-%20Video.png"
             alt="Video Camera Doodle"
-            class="max-[1800px]:hidden absolute -top-6 group-hover:-top-12 group-focus-visible:-top-12 z-10 h-36 -scale-x-100 left-[300px] rotate-[18deg] transition-[top,opacity,visibility] invisible opacity-0 group-hover:opacity-100 group-hover:visible group-focus-visible:visible group-focus-visible:opacity-100 duration-[500ms]"
+            class="max-[1800px]:hidden absolute -top-6 group-hover:-translate-y-4 group-focus-visible:-translate-y-4 z-10 h-36 -scale-x-100 left-[300px] rotate-[18deg] transition-[transform,opacity] opacity-0 group-hover:opacity-100 group-hover:visible group-focus-visible:opacity-100 duration-[500ms]"
           />
-          <div class="bg-navy-3 py-10 px-12 md:px-16 md:py-12 max-h-[450px] sm:max-h-[600px] xl:max-h-[550px] 2xl:max-h-[680px] shadow-md ring-1 ring-slate-700 group-hover:ring-2 group-hover:ring-slate-600 transition-all duration-500 ease-[--transition-bounce] rounded-[3.5rem] xl:rounded-[4rem] relative overflow-hidden">
+          <div class="bg-navy-2 ring-4 ring-white/20 py-10 px-12 md:px-16 md:py-12 max-h-[450px] sm:max-h-[600px] xl:max-h-[550px] 2xl:max-h-[680px] shadow-md ring-slate-700 transition-all duration-500 ease-[--transition-bounce] rounded-[3.5rem] xl:rounded-[4rem] relative overflow-hidden">
             <div class="flex flex-col gap-3 items-end">
               <div class="font-semibold text-lg xl:text-xl opacity-70">
                 Tools

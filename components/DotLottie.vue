@@ -34,14 +34,12 @@ useEventListener(player, 'ready', () => {
   ready.value = true
   player.value?.setSpeed(props.speed)
   player.value?.setLooping(props.loop)
-  // // player.value?.setControls(props.controls)
-  // if (props.autoplay) {
-  //   player.value?.play()
-  // }
 })
 
 onBeforeUnmount(() => {
-  player.value?.stop()
+  if (player.value?.stop) {
+    player.value?.stop()
+  }
 })
 </script>
 
