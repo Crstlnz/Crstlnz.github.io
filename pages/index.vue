@@ -95,7 +95,7 @@ watch(y, (val) => {
 })
 
 function scrollTop() {
-  window.scrollTo({ top: 0, behavior: 'smooth' })
+  smoothScroll(0)
 }
 
 function menuClick(menu: Menu) {
@@ -116,7 +116,7 @@ const { isMobile } = useDevice()
 </script>
 
 <template>
-  <div id="main-app" class="flex justify-center xl:min-h-[100vh] flex-col xl:flex-row">
+  <div id="main-app">
     <Teleport v-if="!isMobile" to="body">
       <ScrollBar
         :use-window="true"
@@ -125,16 +125,14 @@ const { isMobile } = useDevice()
     </Teleport>
     <SinglePageNav class="fixed top-0 !left-0" :currect-section="sectionId" @menu-click="menuClick" />
 
-    <main id="content" class="bg-navy-2 w-full">
-      <Transition name="popup">
-        <button v-if="isTop" type="button" class="z-aboveNav w-10 h-10 bg-navy-3 border-white/50 border-2 rounded-full fixed bottom-10 right-10 hover:bg-navy-5 transition-[background-color,transform] hover:scale-110 duration-200 ease-linear" @click="scrollTop">
-          <Icon name="heroicons:arrow-long-up-16-solid" size="1.5rem" />
-        </button>
-      </Transition>
-      <SectionHome />
-      <SectionAbout />
-      <SectionProjects />
-      <SectionContact />
-    </main>
+    <Transition name="popup">
+      <button v-if="isTop" type="button" class="z-aboveNav w-10 h-10 bg-navy-3 border-white/50 border-2 rounded-full fixed bottom-10 right-10 hover:bg-navy-5 transition-[background-color,transform] hover:scale-110 duration-200 ease-linear" @click="scrollTop">
+        <Icon name="heroicons:arrow-long-up-16-solid" size="1.5rem" />
+      </button>
+    </Transition>
+    <SectionHome />
+    <SectionAbout />
+    <SectionProjects />
+    <SectionContact />
   </div>
 </template>

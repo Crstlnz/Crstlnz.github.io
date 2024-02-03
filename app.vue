@@ -103,7 +103,7 @@ useLenis()
         :key="key"
         :transition="{
           name: 'page',
-          mode: 'in-out',
+          mode: 'out-in',
         }"
       />
     </NuxtLayout>

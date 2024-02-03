@@ -90,7 +90,8 @@
   }
   &.isLoaded{
     opacity: 1;
-    transition-property: inherit;
+    transition-duration: initial;
+    transition-property: initial;
   }
 }
 

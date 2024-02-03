@@ -8,50 +8,86 @@ const main = ref()
 const { width } = useElementSize(main)
 
 let ctx: gsap.Context
+let aboutImage: gsap.core.Tween
 onMounted(() => {
   ctx = useGsap.context(() => {
-    // useGsap
-    //   .timeline({
-    //     scrollTrigger: {
-    //       trigger: '.lang-container',
-    //       start: 'top bottom',
-    //       end: 'bottom bottom',
-    //       toggleActions: 'restart none none reset',
-    //     },
-    //   })
-    //   // .from('.skill-box', { y: 100, stagger: 0.15, opacity: 0, duration: 0.45, delay: 0.25 })
-    //   .from('.lang-list-animate', {
-    //     x: 50,
-    //     stagger: 0.1,
-    //     opacity: 0,
-    //     duration: 1,
-    //     delay: 0,
-    //     ease: 'expo.out',
-    //   })
+    useGsap
+      .timeline({
+        scrollTrigger: {
+          trigger: '.lang-container',
+          start: 'top bottom',
+          end: 'bottom bottom',
+          toggleActions: 'restart none none reset',
+        },
+      })
+      // .from('.skill-box', { y: 100, stagger: 0.15, opacity: 0, duration: 0.45, delay: 0.25 })
+      .from('.lang-list-animate', {
+        x: 50,
+        stagger: 0.1,
+        opacity: 0,
+        duration: 1,
+        delay: 0,
+        ease: 'expo.out',
+      })
 
-    // useGsap
-    //   .fromTo(
-    //     '#about-img',
-    //     {
-    //       rotate: 0,
-    //       scale: 1,
-    //       ease: 'bouncy',
-    //       translateX: 0,
-    //       translateY: 0,
-    //       duration: 0.7,
-    //       paused: true,
-    //       boxShadow: '0px 0px 0px 0px rgba(0,0,0,0)',
-    //     },
-    //     {
-    //       rotate: -12,
-    //       ease: 'bouncy',
-    //       boxShadow: '10px 50px 65px -15px rgba(0,0,0,0.7)',
-    //       scale: 1.05,
-    //       translateX: -21,
-    //       translateY: -40,
-    //     },
-    //   )
+    aboutImage = useGsap
+      .fromTo(
+        '#about-img',
+        {
+          rotate: 0,
+          scale: 1,
+          x: 0,
+          y: 0,
+          duration: 0.1,
+          boxShadow: '0px 0px 0px 0px rgba(0,0,0,0)',
+        },
+        {
+          rotate: -12,
+          boxShadow: '10px 50px 65px -15px rgba(0,0,0,0.7)',
+          scale: 1.05,
+          ease: 'bouncy',
+          x: -21,
+          y: -40,
+          paused: true,
+        },
+      )
   }, main.value) // <- Scope!
+})
+
+const aboutCard = ref<HTMLElement>()
+const isHover = useElementHover(aboutCard)
+
+function isOver() {
+  if (aboutCard.value) {
+    const rect = aboutCard.value.getBoundingClientRect()
+    const height = window.innerHeight / 2
+    return rect.top < height
+  }
+  return false
+}
+
+const outFrame = ref(false)
+
+const out = computed(() => {
+  if (outFrame.value) {
+    return !isHover.value
+  }
+  else {
+    return false
+  }
+})
+
+watch(out, (o) => {
+  if (o) {
+    aboutImage.play()
+  }
+  else {
+    aboutImage.reverse()
+  }
+})
+
+useEventListener(window, 'scroll', () => {
+  outFrame.value = isOver()
 })
 
 const route = useRoute()
@@ -88,6 +124,7 @@ onBeforeUnmount(() => {
       >
         <div
           id="about-card"
+          ref="aboutCard"
           class="glowing-card relative z-10 group max-w-full w-full xl:w-[700px] 2xl:w-[850px]"
         >
           <div class="absolute inset-0 glowing -z-10 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
@@ -100,7 +137,7 @@ onBeforeUnmount(() => {
                   id="about-img"
                   src="https://avatars.githubusercontent.com/u/52141479"
                   alt="Github Profile Picture"
-                  class="bg-white/50 w-full aspect-square absolute -translate-x-5 rounded-xl -translate-y-10 rotate-[-12deg] ease-[--transition-bounce] scale-105 shadow-[10px_50px_65px_-15px_rgba(0,0,0,0.7)] transition-all duration-700  object-cover"
+                  class="bg-white/50 w-full aspect-square absolute rounded-xl duration-700 object-cover"
                 >
               </div>
               <div class="flex justify-center">
@@ -116,13 +153,13 @@ onBeforeUnmount(() => {
                 title="GitHub Stats"
                 class="flex flex-col max-md:-mx-5 md:flex-row items-start md:items-center justify-center hover md:hover:bg-black/20 rounded-xl transition-colors duration-300"
               >
-                <div class="md:h-36 lg:h-[10.5rem] aspect-[49.45/18] max-w-full">
+                <div class="max-md:w-full md:h-36 lg:h-[10.5rem] xl:h-[9rem] 2xl:h-[10.5rem] aspect-[49.45/18] max-w-full">
                   <img
                     class="w-full"
                     src="https://statsme.vercel.app/api?username=crstlnz&hide=issues&count_private=true&show_icons=true&icon_color=ffb886&title_color=ffb886&hide_border=true&text_color=fcfeff&theme=transparent"
                   >
                 </div>
-                <div class="max-md:w-full md:h-36 lg:h-[10.5rem] aspect-[49.45/18] md:aspect-[9.09/5] max-w-full flex">
+                <div class="max-md:w-full md:h-36 lg:h-[10.5rem] xl:h-[9rem] 2xl:h-[10.5rem] aspect-[49.45/18] md:aspect-[9.09/5] max-w-full flex">
                   <div class="aspect-[9.09/5] max-h-full h-full">
                     <img
                       class="w-full"
@@ -132,7 +169,7 @@ onBeforeUnmount(() => {
                 </div>
               </NuxtLink>
               <NuxtLink to="https://wakatime.com/@crstlnz" class="md:w-full max-md:-mx-5 md:bg-black/20 rounded-xl">
-                <div class="md:h-[10.7rem] md:aspect-[511/175.05] max-w-full">
+                <div class="max-md:w-full md:h-[10.7rem] aspect-[511/175.05] max-w-full">
                   <img
                     class="w-full"
                     src="https://statsme.vercel.app/api/wakatime?username=crstlnz&hide_border=true&theme=transparent&icon_color=ffb886&title_color=ffb886&text_color=fcfeff&range=last_7_day&langs_count=4"
@@ -201,7 +238,7 @@ onBeforeUnmount(() => {
         </div>
       </div>
       <RunningIcon
-        class="py-12 md:py-16 w-full"
+        class="py-24 md:py-32 w-full"
         :speed="(width * 0.03) / 100"
         :enable-hover="true"
         :min-gap="{
@@ -212,12 +249,8 @@ onBeforeUnmount(() => {
           xl: 75,
           xxl: 75,
         }"
-        :sizes="{
-          all: 50,
-          sm: 80,
-          md: 80,
-          xl: 80,
-        }"
+        sizes="h-[80px] sm:h-[100px]"
+        image-sizes="80px sm:100px"
         :data="myLang"
       />
     </div>
@@ -300,21 +333,16 @@ onBeforeUnmount(() => {
   width: 100%;
   border-radius: 0.25rem;
   transform: scale(1) translateZ(0);
-  filter: blur(15px);
+  filter: blur(18px);
   background: linear-gradient(
     to left,
-    #ff5770,
-    #e4428d,
-    #c42da8,
-    #9e16c3,
-    #6501de,
-    #9e16c3,
-    #c42da8,
-    #e4428d,
-    #ff5770
+    #f79d5d,
+    #ffe1cc,
+    #f79d5d,
+    #f79d5d,
   );
   background-size: 200% 200%;
-  animation: animateGlow 3.5s linear infinite;
+  animation: animateGlow 2.5s linear infinite;
 }
 
 @keyframes animateGlow {

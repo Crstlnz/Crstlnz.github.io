@@ -47,11 +47,6 @@ export default defineNuxtConfig({
   ],
   app: {
     rootId: 'app',
-    // layoutTransition: { name: 'page', mode: 'out-in' },
-    // pageTransition: {
-    //   name: 'page',
-    //   mode: 'out-in',
-    // },
   },
   colorMode: {
     preference: 'dark',

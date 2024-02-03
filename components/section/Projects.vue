@@ -25,11 +25,13 @@ const multiViewerUrl = ref('https://dc.crstlnz.my.id/multi?mockup=1')
           <NuxtImg
             src="/img/mockup/Doodle%20-%20Floppy%20Disk.png"
             alt="Floppy Doodle"
+            sizes="144px"
             class="max-[1800px]:hidden absolute top-[40%] group-hover:-translate-y-4 group-focus-visible:-translate-y-4 z-10 h-36 -left-12 rotate-12 transition-[transform,opacity] opacity-0 group-hover:opacity-100 group-hover:visible group-focus-visible:opacity-100 duration-[500ms]"
           />
           <NuxtImg
             src="/img/mockup/Doodle%20-%20Magnifier.png"
             alt="Magnifier Doodle"
+            sizes="144px"
             class="max-[1800px]:hidden absolute -top-6 group-hover:-translate-y-4 group-focus-visible:-translate-y-4 z-10 h-40 left-[380px] rotate-[-18deg] transition-[transform,opacity] opacity-0 group-hover:opacity-100 group-hover:visible group-focus-visible:opacity-100 duration-[500ms]"
           />
           <div class="bg-navy-2 ring-4 ring-white/20 py-10 px-12 md:px-16 md:py-12 max-h-[450px] sm:max-h-[600px] xl:max-h-[550px] 2xl:max-h-[680px] shadow-md ring-slate-700 transition-all duration-500 ease-[--transition-bounce] rounded-[3.5rem] xl:rounded-[4rem] relative overflow-hidden">
@@ -43,7 +45,7 @@ const multiViewerUrl = ref('https://dc.crstlnz.my.id/multi?mockup=1')
             </div>
             <div class="mt-8 md:mt-10 xl:mt-14 xl:mx-16 relative overflow-visible h-[900px] transition-all duration-[800ms] ease-[--transition-bounce] group-focus-visible:translate-y-5 group-hover:translate-y-5">
               <div class="absolute top-0 left-0 w-[600px] md:w-[900px] 2xl:w-[1300px]">
-                <NuxtImg sizes="600px md:900px 2xl:1300px" src="/img/mockup/home.png" class="object-cover" />
+                <NuxtImg sizes="600px md:900px 2xl:1300px" densities="1x" src="/img/mockup/home.png" class="object-cover" />
               </div>
             </div>
           </div>
@@ -52,6 +54,7 @@ const multiViewerUrl = ref('https://dc.crstlnz.my.id/multi?mockup=1')
           <NuxtImg
             src="/img/mockup/Doodle%20-%20Gamepad.png"
             alt="Gamepad Doodle"
+            sizes="144px"
             class="max-[1800px]:hidden absolute -top-8 group-hover:-translate-y-4 group-focus-visible:-translate-y-4 rotate-12 z-10 h-36 left-16 2xl:left-28 transition-[transform,opacity] opacity-0 group-hover:opacity-100 group-hover:visible group-focus-visible:opacity-100 duration-[500ms]"
           />
           <div class="bg-navy-2 ring-4 ring-white/20 py-10 px-12 md:px-16 md:py-12 max-h-[450px] sm:max-h-[600px] xl:max-h-[550px] 2xl:max-h-[680px] shadow-md ring-slate-700 transition-all duration-500 ease-[--transition-bounce] rounded-[3.5rem] xl:rounded-[4rem] relative overflow-hidden">
@@ -65,7 +68,7 @@ const multiViewerUrl = ref('https://dc.crstlnz.my.id/multi?mockup=1')
             </div>
             <div class="mt-8 md:mt-10 xl:mt-14 relative flex overflow-visible h-[900px] transition-all duration-[800ms] ease-[--transition-bounce] group-focus-visible:translate-y-5 group-hover:translate-y-5">
               <div class="absolute top-0 max-xl:left-1/2 left-0 max-xl:-translate-x-1/2 aspect-[9/19.5] 2xl:px-10 min-h-[550px]">
-                <NuxtImg sizes="300px md:500px 2xl:600px" src="/img/mockup/phone_oshi_sorter_2.png" class="object-cover" />
+                <NuxtImg sizes="300px md:500px 2xl:600px" densities="1x" src="/img/mockup/phone_oshi_sorter_2.png" class="object-cover" />
               </div>
             </div>
           </div>
@@ -76,6 +79,7 @@ const multiViewerUrl = ref('https://dc.crstlnz.my.id/multi?mockup=1')
           <NuxtImg
             src="/img/mockup/Doodle%20-%20Gamepad.png"
             alt="Gamepad Doodle"
+            sizes="144px"
             class="max-[1800px]:hidden absolute -top-8 group-hover:-translate-y-4 group-focus-visible:-translate-y-4 rotate-12 z-10 h-36 left-28 transition-[transform,opacity] opacity-0 group-hover:opacity-100 group-hover:visible group-focus-visible:opacity-100 duration-[500ms]"
           />
           <div class="bg-navy-2 ring-4 ring-white/20 py-10 px-12 md:px-16 md:py-12 max-h-[450px] sm:max-h-[600px] xl:max-h-[550px] 2xl:max-h-[680px] shadow-md ring-slate-700 transition-all duration-500 ease-[--transition-bounce] rounded-[3.5rem] xl:rounded-[4rem] relative overflow-hidden">
@@ -89,7 +93,7 @@ const multiViewerUrl = ref('https://dc.crstlnz.my.id/multi?mockup=1')
             </div>
             <div class="mt-8 md:mt-10 xl:mt-14 relative flex overflow-visible h-[900px] transition-all duration-[800ms] ease-[--transition-bounce] group-focus-visible:translate-y-5 group-hover:translate-y-5">
               <div class="absolute top-0 max-xl:left-1/2 left-0 max-xl:-translate-x-1/2 aspect-[9/19.5] 2xl:px-10 min-h-[550px]">
-                <NuxtImg sizes="300px md:500px 2xl:600px" src="/img/mockup/phone_chat.png?updatedAt=1706206208141" class="object-cover" />
+                <NuxtImg sizes="300px md:500px 2xl:600px" densities="1x" src="/img/mockup/phone_chat.png?updatedAt=1706206208141" class="object-cover" />
               </div>
             </div>
           </div>
@@ -98,11 +102,13 @@ const multiViewerUrl = ref('https://dc.crstlnz.my.id/multi?mockup=1')
           <NuxtImg
             src="/img/mockup/Doodle%20-%20Action.png"
             alt="Clapperboard Doodle"
+            sizes="144px"
             class="max-[1800px]:hidden absolute top-[40%] group-hover:-translate-y-4 group-focus-visible:-translate-y-4 z-10 h-44 -left-20 rotate-[-5deg] transition-[transform,opacity] opacity-0 group-hover:opacity-100 group-hover:visible group-focus-visible:opacity-100 duration-[500ms]"
           />
           <NuxtImg
             src="/img/mockup/Doodle%20-%20Video.png"
             alt="Video Camera Doodle"
+            sizes="144px"
             class="max-[1800px]:hidden absolute -top-6 group-hover:-translate-y-4 group-focus-visible:-translate-y-4 z-10 h-36 -scale-x-100 left-[300px] rotate-[18deg] transition-[transform,opacity] opacity-0 group-hover:opacity-100 group-hover:visible group-focus-visible:opacity-100 duration-[500ms]"
           />
           <div class="bg-navy-2 ring-4 ring-white/20 py-10 px-12 md:px-16 md:py-12 max-h-[450px] sm:max-h-[600px] xl:max-h-[550px] 2xl:max-h-[680px] shadow-md ring-slate-700 transition-all duration-500 ease-[--transition-bounce] rounded-[3.5rem] xl:rounded-[4rem] relative overflow-hidden">
@@ -116,7 +122,7 @@ const multiViewerUrl = ref('https://dc.crstlnz.my.id/multi?mockup=1')
             </div>
             <div class="mt-8 md:mt-10 xl:mt-14 xl:mx-8 relative overflow-visible h-[900px] transition-all duration-[800ms] ease-[--transition-bounce] group-focus-visible:translate-y-5 group-hover:translate-y-5">
               <div class="absolute top-0 left-0 w-[600px] md:w-[900px] xl:w-[1300px]">
-                <NuxtImg sizes="600px md:900px 2xl:1300px" src="/img/mockup/multi_viewer.png" class="object-cover" />
+                <NuxtImg src="/img/mockup/multi_viewer.png" sizes="600px md:900px 2xl:1300px" densities="1x" class="object-cover" />
               </div>
             </div>
           </div>

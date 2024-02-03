@@ -1,8 +1,4 @@
 <script lang="ts" setup>
-import '@splidejs/vue-splide/css'
-import { Splide, SplideSlide } from '@splidejs/vue-splide'
-import { AutoScroll } from '@splidejs/splide-extension-auto-scroll'
-
 const props = withDefaults(defineProps<{
   data: {
     img: string
@@ -12,14 +8,8 @@ const props = withDefaults(defineProps<{
   enableLink?: boolean
   enableHover?: boolean
   speed?: number
-  sizes?: {
-    all: number
-    sm?: number
-    md?: number
-    lg?: number
-    xl?: number
-    xxl?: number
-  }
+  sizes?: string
+  imageSizes?: string
   minGap?: {
     all: number
     sm?: number
@@ -32,11 +22,6 @@ const props = withDefaults(defineProps<{
 }>(), {
   enableHover: false,
   enableLink: true,
-  sizes: () => {
-    return {
-      all: 128,
-    }
-  },
   speed: 4.5,
   minGap: () => {
     return {
@@ -46,14 +31,8 @@ const props = withDefaults(defineProps<{
   offset: 200,
 })
 
-// defineComponent({
-//   components: {
-//     Splide,
-//     SplideSlide,
-//   },
-// })
-
 const { greaterOrEqual } = useResponsive()
+
 const sm = greaterOrEqual('sm')
 const md = greaterOrEqual('md')
 const lg = greaterOrEqual('lg')
@@ -63,27 +42,6 @@ const xl2 = greaterOrEqual('2xl')
 const icons = ref<HTMLElement[]>([])
 const scroller = ref<HTMLElement | null>()
 const container = ref<HTMLElement | null>()
-
-function getSize(): number {
-  if (props.sizes.xxl && xl2.value) {
-    return props.sizes.xxl
-  }
-  else if (props.sizes.xl && xl.value) {
-    return props.sizes.xl
-  }
-  else if (props.sizes.lg && lg.value) {
-    return props.sizes.lg
-  }
-  else if (props.sizes.md && md.value) {
-    return props.sizes.md
-  }
-  else if (props.sizes.sm && sm.value) {
-    return props.sizes.sm
-  }
-  else {
-    return props.sizes.all
-  }
-}
 
 const gap = computed(() => {
   if (props.minGap.xxl && xl2.value) {
@@ -108,18 +66,18 @@ const gap = computed(() => {
 
 const { $gsap } = useNuxtApp()
 let ctx: gsap.Context
-// onMounted(() => {
-//   ctx = $gsap.context(() => {
-//     $gsap.fromTo('#icon-slider', {
-//       xPercent: 0,
-//     }, {
-//       duration: 60,
-//       xPercent: -50,
-//       repeat: -1,
-//       ease: 'none',
-//     })
-//   })
-// })
+onMounted(() => {
+  ctx = $gsap.context(() => {
+    $gsap.fromTo('#icon-slider', {
+      xPercent: 0,
+    }, {
+      duration: 60,
+      xPercent: -50,
+      repeat: -1,
+      ease: 'none',
+    })
+  })
+})
 
 onBeforeUnmount(() => {
   if (ctx) ctx.kill()
@@ -128,68 +86,38 @@ onBeforeUnmount(() => {
 
 <template>
   <div>
-    <Splide
-      class="gradient my-4"
-      :options="{
-        type: 'loop',
-        arrows: false,
-        pagination: false,
-        perPage: 12,
-        gap: '3rem',
-        autoScroll: {
-          speed: 0.3,
-          pauseOnHover: false,
-        },
-      }" :extensions="{ AutoScroll }" aria-label="My Favorite Images"
-    >
-      <SplideSlide v-for="icon in [...data]" :key="icon.img">
-        <NuxtImg :src="icon.img" :alt="icon.title" class="w-full h-full object-contain" />
-      </SplideSlide>
-    </Splide>
-    <!-- <div ref="scroller" class="gradient relative overflow-x-hidden transition-opacity duration-300 max-w-[100vw] mx-auto" :style="{ height: `${getSize() + 10}px` }">
-      <div id="icon-slider" ref="container" class="absolute flex justify-around" :style="{ gap: `${gap}px`, paddingRight: `${gap / 2}px`, paddingLeft: `${gap / 2}px` }">
+    <div ref="scroller" class="gradient relative transition-opacity duration-300 mx-auto" :class="sizes">
+      <div id="icon-slider" ref="container" class="flex absolute">
         <component
           :is="icon.resource && enableLink ? 'a' : 'div'"
           v-for="[idx, icon] in [...data, ...data].entries()"
           ref="icons"
           :key="idx"
           target="_blank"
+          :style="{
+            marginRight: `${gap}px`,
+          }"
           :href="enableLink ? icon.resource : undefined"
           :title="icon.title"
-          :style="{
-            width: `${getSize()}px`,
-            height: `${getSize()}px`,
-          }"
-          :class="{
-            'cursor-pointer': enableLink && icon.resource,
-            'transition-transform duration-300 hover:scale-90': enableHover,
-          }"
-          class="pointer-events-auto shrink-0 text-center text-7xl leading-[8rem] text-slate-600 rounded-md mt-[5px]"
+          :class="[
+            {
+              'cursor-pointer': enableLink && icon.resource,
+              'transition-transform duration-300 hover:scale-90': enableHover,
+            },
+            sizes,
+          ]"
+          class="pointer-events-auto shrink-0 inline-block aspect-square rounded-md"
         >
-          <NuxtImg :src="icon.img" :alt="icon.title" class="w-full h-full object-contain" />
+          <NuxtImg :src="icon.img" :alt="icon.title" :sizes="imageSizes" class="w-full h-full object-contain" />
         </component>
       </div>
-    </div> -->
+    </div>
   </div>
 </template>
 
 <style lang="scss">
 .gradient{
-  mask-image: -webkit-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.4), rgba(0,0,0,1),rgba(0,0,0,1),rgba(0,0,0,0.4),rgba(0,0,0,0));
-  -webkit-mask-image: -webkit-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.4), rgba(0,0,0,1),rgba(0,0,0,1),rgba(0,0,0,0.4),rgba(0,0,0,0));
-}
-
-@keyframes slide-left {
-  from {transform: translateX(0);}
-  to {transform: translateX(-50%);}
-}
-
-@keyframes slide-right {
-  from {transform: translateX(0);}
-  to {transform: translateX(50%);}
-}
-
-#icon-slider{
-  animation: slide-left 60s infinite linear;
+  mask-image: linear-gradient(90deg,transparent, #fff 20%, #fff 80%, transparent);
+  -webkit-mask-image: linear-gradient(90deg,transparent, #fff 20%, #fff 80%, transparent);
 }
 </style>
