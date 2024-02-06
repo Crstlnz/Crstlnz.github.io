@@ -128,6 +128,7 @@ onBeforeUnmount(() => {
 
 <template>
   <section
+    id="home"
     ref="home"
     data-section="home"
     class="max-h-[1200px] flex flex-col"

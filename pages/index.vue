@@ -1,15 +1,6 @@
 <script setup lang="ts">
-import { breakpointsTailwind, useBreakpoints, useEventListener, useScroll } from '@vueuse/core'
-
-// definePageMeta({
-//   // pageTransition: {
-//   //   name: 'page',
-//   //   mode: 'out-in',
-//   //   onEnter: () => {
-//   //
-//   //   },
-//   // },
-// })
+import { breakpointsTailwind, useBreakpoints, useEventListener } from '@vueuse/core'
+import SectionNavButton from '~/components/SectionNavButton.vue'
 
 const wrapper = ref<HTMLElement>()
 const wrapperChild = ref<HTMLElement>()
@@ -70,33 +61,37 @@ const sectionId = computed(() => {
   return currentSection.value?.getAttribute('data-section')
 })
 const sections = ref<HTMLElement[]>([])
+const currectSectionIndex = ref(0)
 function detectSection() {
-  currentSection.value = sections.value.find((sec) => {
+  currentSection.value = sections.value.find((sec, idx) => {
     const y = window.scrollY
     const offset = sec.offsetTop - window.innerHeight / 2
     const height = sec.offsetHeight
     if (y >= offset && y < offset + height) {
-      return sec
+      currectSectionIndex.value = idx
+      return true
     }
-    return null
+    return false
   })
 }
+
+const prevSectionId = computed<string | undefined | null>(() => {
+  const prevIdx = currectSectionIndex.value - 1
+  if (prevIdx < 0) return null
+  return sections.value[prevIdx]?.getAttribute('id')
+})
+
+const nextSectionId = computed<string | undefined | null>(() => {
+  const nextIdx = currectSectionIndex.value + 1
+  if (nextIdx >= sections.value.length - 1) return null
+  return sections.value[nextIdx]?.getAttribute('id')
+})
 
 onMounted(() => {
   nextTick(() => {
     sections.value = [...document.querySelectorAll('section')]
   })
 })
-
-const { y } = useScroll(window)
-const isTop = ref(false)
-watch(y, (val) => {
-  isTop.value = val > window.innerHeight / 2
-})
-
-function scrollTop() {
-  smoothScroll(0)
-}
 
 function menuClick(menu: Menu) {
   if (menu.url !== '#') {
@@ -124,12 +119,7 @@ const { isMobile } = useDevice()
       />
     </Teleport>
     <SinglePageNav class="fixed top-0 !left-0" :currect-section="sectionId" @menu-click="menuClick" />
-
-    <Transition name="popup">
-      <button v-if="isTop" type="button" class="z-aboveNav w-10 h-10 bg-navy-3 border-white/50 border-2 rounded-full fixed bottom-10 right-10 hover:bg-navy-5 transition-[background-color,transform] hover:scale-110 duration-200 ease-linear" @click="scrollTop">
-        <Icon name="heroicons:arrow-long-up-16-solid" size="1.5rem" />
-      </button>
-    </Transition>
+    <SectionNavButton :next-id="nextSectionId" :prev-id="prevSectionId" />
     <SectionHome />
     <SectionAbout />
     <SectionProjects />

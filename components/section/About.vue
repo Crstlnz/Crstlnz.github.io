@@ -20,7 +20,6 @@ onMounted(() => {
           toggleActions: 'restart none none reset',
         },
       })
-      // .from('.skill-box', { y: 100, stagger: 0.15, opacity: 0, duration: 0.45, delay: 0.25 })
       .from('.lang-list-animate', {
         x: 50,
         stagger: 0.1,
