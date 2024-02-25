@@ -231,3 +231,13 @@
         transform: translateY(-40px);
     }
 }
+
+.scalein-enter-active,
+.scalein-leave-active {
+  transition: all 0.3s;
+}
+.scalein-enter-from,
+.scalein-leave-to {
+  opacity: 0;
+  scale : 0.93;  
+}

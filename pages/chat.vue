@@ -3,6 +3,12 @@ import multiavatar from '@multiavatar/multiavatar/esm'
 import { v4 as uuid } from 'uuid'
 import { useChatUser } from '~/store/chatUser'
 
+definePageMeta({
+  pageTransition: {
+    name: 'scalein',
+  },
+})
+
 const chatUser = useChatUser()
 const { setName, setAvatar } = chatUser
 const { name } = storeToRefs(chatUser)
